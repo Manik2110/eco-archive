@@ -1,0 +1,25 @@
+<%- include('partials/header') %>
+
+<h2 style="margin-bottom:1.25rem">Upload Resource</h2>
+
+<div class="eco-banner">📝 Please upload text-based study notes (PDF, docs, plain text). Avoid large video or image files to keep the archive lightweight.</div>
+
+<% if (error) { %><p class="text-red" style="margin-bottom:1rem"><%= error %></p><% } %>
+
+<form method="POST" action="/resources/upload" enctype="multipart/form-data" class="card-form form">
+  <input name="title" placeholder="Title" required/>
+  <textarea name="description" placeholder="Brief description" rows="3"></textarea>
+  <input name="subject" placeholder="Subject (e.g. Climate, Biodiversity)" required/>
+  <select name="type" required>
+    <option value="">Select file type</option>
+    <option value="PDF">PDF</option>
+    <option value="Video">Video</option>
+    <option value="Image">Image</option>
+    <option value="Other">Other</option>
+  </select>
+  <input type="file" name="file" id="fileInput" required/>
+  <p id="filePreview" class="muted" style="display:none"></p>
+  <button class="btn btn-green">Upload</button>
+</form>
+
+<%- include('partials/footer') %>

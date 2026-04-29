@@ -1,0 +1,16 @@
+# Environment variables (passwords, secrets)
+.env
+
+# Uploaded files
+public/uploads/
+
+# Node modules
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*

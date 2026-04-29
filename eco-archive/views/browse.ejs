@@ -1,0 +1,48 @@
+<%- include('partials/header') %>
+
+<h2 style="margin-bottom:1.25rem">Browse Resources</h2>
+
+<form method="GET" action="/resources/browse" class="search-row">
+  <input name="q" value="<%= query.q || '' %>" placeholder="Search by title or description..."/>
+  <select name="subject" style="width:auto">
+    <option value="">All Subjects</option>
+    <% subjects.forEach(s => { %>
+      <option value="<%= s.subject %>" <%= query.subject === s.subject ? 'selected' : '' %>><%= s.subject %></option>
+    <% }) %>
+  </select>
+  <select name="type" style="width:auto">
+    <option value="">All Types</option>
+    <option value="PDF" <%= query.type === 'PDF' ? 'selected' : '' %>>PDF</option>
+    <option value="Video" <%= query.type === 'Video' ? 'selected' : '' %>>Video</option>
+    <option value="Image" <%= query.type === 'Image' ? 'selected' : '' %>>Image</option>
+    <option value="Other" <%= query.type === 'Other' ? 'selected' : '' %>>Other</option>
+  </select>
+  <button class="btn btn-green">Search</button>
+  <% if (query.q || query.subject || query.type) { %>
+    <a href="/resources/browse" class="btn btn-outline">Clear</a>
+  <% } %>
+</form>
+
+<% if (resources.length === 0) { %>
+  <p class="muted">No resources found. <a href="/resources/upload">Upload one?</a></p>
+<% } else { %>
+  <div class="grid-3">
+    <% resources.forEach(r => { %>
+      <div class="card flex flex-col gap-sm">
+        <strong><%= r.title %></strong>
+        <span class="muted"><%= r.subject %> · <%= r.file_type %></span>
+        <p class="muted clamp"><%= r.description %></p>
+        <div class="flex between mt-auto" style="margin-top:0.75rem">
+          <a href="/resources/download/<%= r.id %>" class="btn btn-green btn-sm">⬇ Download (<%= r.downloads %>)</a>
+          <% if (user && (user.id === r.uploaded_by || user.is_admin)) { %>
+            <form method="POST" action="/resources/delete/<%= r.id %>">
+              <button class="btn-red">Delete</button>
+            </form>
+          <% } %>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+<% } %>
+
+<%- include('partials/footer') %>

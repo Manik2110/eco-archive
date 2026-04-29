@@ -1,0 +1,21 @@
+ECO-ARCHIVE SETUP GUIDE
+=======================
+
+Requirements:
+- Node.js v18+
+- MySQL 8+
+
+Steps:
+1. Clone the repo and navigate into eco-archive/
+2. Run: npm install
+3. Create a MySQL database named eco_archive
+4. Copy .env and fill in your DB credentials and a session secret
+5. Run: npm run init-db   (creates tables and seeds initial data)
+6. Run: npm start
+7. Visit http://localhost:3000
+
+Default admin credentials (set in setup/database.sql):
+  Email:    admin@eco.com
+  Password: admin123
+
+File uploads are stored in: public/uploads/

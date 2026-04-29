@@ -1,0 +1,22 @@
+<%- include('partials/header') %>
+
+<h2 style="margin-bottom:1.25rem">My Uploads</h2>
+
+<% if (resources.length === 0) { %>
+  <p class="muted">You haven't uploaded anything yet. <a href="/resources/upload">Upload now →</a></p>
+<% } else { %>
+  <div class="grid-3">
+    <% resources.forEach(r => { %>
+      <div class="card flex flex-col gap-sm">
+        <strong><%= r.title %></strong>
+        <span class="muted"><%= r.subject %> · <%= r.file_type %></span>
+        <span class="muted">⬇ <%= r.downloads %> downloads</span>
+        <form method="POST" action="/resources/delete/<%= r.id %>" style="margin-top:auto">
+          <button class="btn-red">Delete</button>
+        </form>
+      </div>
+    <% }) %>
+  </div>
+<% } %>
+
+<%- include('partials/footer') %>

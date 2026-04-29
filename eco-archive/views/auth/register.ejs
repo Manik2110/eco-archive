@@ -1,0 +1,15 @@
+<%- include('../partials/header') %>
+
+<div class="card-form" style="margin:0 auto">
+  <h2 style="margin-bottom:1rem">Register</h2>
+  <% if (error) { %><p class="text-red" style="margin-bottom:0.75rem"><%= error %></p><% } %>
+  <form method="POST" action="/auth/register" class="form">
+    <input name="name" placeholder="Full name" required/>
+    <input name="email" type="email" placeholder="Email" required/>
+    <input name="password" type="password" placeholder="Password" required/>
+    <button class="btn btn-green">Create Account</button>
+  </form>
+  <p class="muted" style="margin-top:1rem">Already have an account? <a href="/auth/login">Login</a></p>
+</div>
+
+<%- include('../partials/footer') %>

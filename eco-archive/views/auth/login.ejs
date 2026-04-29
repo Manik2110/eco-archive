@@ -1,0 +1,14 @@
+<%- include('../partials/header') %>
+
+<div class="card-form" style="margin:0 auto">
+  <h2 style="margin-bottom:1rem">Login</h2>
+  <% if (error) { %><p class="text-red" style="margin-bottom:0.75rem"><%= error %></p><% } %>
+  <form method="POST" action="/auth/login" class="form">
+    <input name="email" type="email" placeholder="Email" required/>
+    <input name="password" type="password" placeholder="Password" required/>
+    <button class="btn btn-green">Login</button>
+  </form>
+  <p class="muted" style="margin-top:1rem">No account? <a href="/auth/register">Register here</a></p>
+</div>
+
+<%- include('../partials/footer') %>

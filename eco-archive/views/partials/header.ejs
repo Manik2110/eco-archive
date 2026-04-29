@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eco Archive</title>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-brand">🌿 Eco Archive</a>
+  <div class="nav-links">
+    <a href="/resources/browse">Browse</a>
+    <% if (user) { %>
+      <a href="/resources/upload">Upload</a>
+      <a href="/resources/dashboard">Dashboard</a>
+      <% if (user.is_admin) { %><a href="/admin">Admin</a><% } %>
+      <a href="/auth/logout">Logout</a>
+    <% } else { %>
+      <a href="/auth/login">Login</a>
+      <a href="/auth/register">Register</a>
+    <% } %>
+    <button id="themeToggle" class="btn btn-outline btn-sm">☀️ Light</button>
+    <button id="lowDataToggle" class="btn btn-outline btn-sm">⚡ Low Data</button>
+  </div>
+</nav>
+<main>

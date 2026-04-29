@@ -1,0 +1,55 @@
+<%- include('partials/header') %>
+
+<h2 style="margin-bottom:1.5rem">Admin Panel</h2>
+
+<div class="section">
+  <h2>Users (<%= users.length %>)</h2>
+  <div style="overflow-x:auto">
+    <table>
+      <thead><tr><th>Name</th><th>Email</th><th>Admin</th><th>Actions</th></tr></thead>
+      <tbody>
+        <% users.forEach(u => { %>
+          <tr>
+            <td><%= u.name %></td>
+            <td><%= u.email %></td>
+            <td><%= u.is_admin ? '✅' : '—' %></td>
+            <td class="flex gap-sm">
+              <form method="POST" action="/admin/toggle-admin/<%= u.id %>">
+                <button class="btn btn-outline btn-sm">Toggle Admin</button>
+              </form>
+              <form method="POST" action="/admin/delete-user/<%= u.id %>">
+                <button class="btn-red">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Resources (<%= resources.length %>)</h2>
+  <div style="overflow-x:auto">
+    <table>
+      <thead><tr><th>Title</th><th>Subject</th><th>Uploader</th><th>Downloads</th><th>Action</th></tr></thead>
+      <tbody>
+        <% resources.forEach(r => { %>
+          <tr>
+            <td><%= r.title %></td>
+            <td><%= r.subject %></td>
+            <td><%= r.uploader %></td>
+            <td><%= r.downloads %></td>
+            <td>
+              <form method="POST" action="/resources/delete/<%= r.id %>">
+                <button class="btn-red">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
